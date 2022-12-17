@@ -42,11 +42,11 @@ export class PathController {
           return acc;
         }, [])
         .sort((lhs, rhs) => {
-          if (lhs[0] === rhs[0]) {
-            return lhs[0].compare(rhs[0]);
+          if (lhs[1] === rhs[1]) {
+            return lhs[0].localeCompare(rhs[0]);
           }
 
-          return lhs[1] === "File" ? -1 : 1;
+          return lhs[1] === "Directory" ? -1 : 1;
         });
       console.table(fileTable);
     } catch (e) {
