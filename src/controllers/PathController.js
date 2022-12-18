@@ -7,7 +7,7 @@ export class PathController {
     this.commands = ["cd", "ls", "up"];
   }
 
-  async cd(pathArg) {
+  async cd([pathArg]) {
     if (!pathArg) return;
     try {
       const newPath = path.resolve(this.currentPath, pathArg);
