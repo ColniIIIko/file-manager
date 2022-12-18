@@ -40,11 +40,13 @@ export class App {
         } else {
           await commandController[commandData.command](
             commandData.arg,
-            commandData.commandArgs
+            commandData.commandArgs,
+            this.#pathController.currentPath
           );
         }
       } catch (e) {
-        console.log("Unexceptional error", e);
+        console.log(e.message, "\n\n\n");
+        console.log("Unexceptional error: ", e);
       }
       process.stdout.write(this.#pathController.currentPath + "> ");
     });
