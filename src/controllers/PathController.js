@@ -41,15 +41,15 @@ export class PathController {
       );
       const fileTable = files
         .reduce((acc, f, index) => {
-          acc.push([f, filesStat[index]]);
+          acc.push({ Name: f, Type: filesStat[index] });
           return acc;
         }, [])
         .sort((lhs, rhs) => {
-          if (lhs[1] === rhs[1]) {
-            return lhs[0].localeCompare(rhs[0]);
+          if (lhs.Type === rhs.Type) {
+            return lhs.Name.localeCompare(rhs.Name);
           }
 
-          return lhs[1] === "Directory" ? -1 : 1;
+          return lhs.Type === "Directory" ? -1 : 1;
         });
       console.table(fileTable);
     } catch (e) {
