@@ -10,7 +10,10 @@ export class PathController {
   async cd([pathArg]) {
     if (!pathArg) return;
     try {
-      const newPath = path.resolve(this.currentPath, pathArg);
+      const newPath = path.resolve(
+        this.currentPath,
+        pathArg.replaceAll("'", "").replaceAll(`"`, "")
+      );
       if ((await stat(newPath)).isDirectory()) this.currentPath = newPath;
     } catch (e) {
       console.log(`path ${pathArg} is incorrect`);

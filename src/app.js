@@ -30,7 +30,6 @@ export class App {
       if (data.toString().trim() == ".exit") process.emit("SIGINT");
 
       const commandData = parseCommand(data.toString());
-      console.log(commandData);
       const commandController = this.#controllers.find((c) =>
         c.commands.includes(commandData.command)
       );
@@ -45,8 +44,7 @@ export class App {
           );
         }
       } catch (e) {
-        console.log(e.message, "\n\n\n");
-        console.log("Unexceptional error: ", e);
+        console.log(e.message);
       }
       process.stdout.write(this.#pathController.currentPath + "> ");
     });
