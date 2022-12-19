@@ -24,7 +24,9 @@ export class App {
 
   init() {
     console.log(`Welcome to the File Manager, ${this.userName}!\n`);
-    process.stdout.write(this.#pathController.currentPath + "> ");
+    process.stdout.write(
+      "You are currently in\n" + this.#pathController.currentPath + "> "
+    );
 
     process.stdin.on("data", async (data) => {
       if (data.toString().trim() == ".exit") process.emit("SIGINT");
@@ -46,7 +48,9 @@ export class App {
       } catch (e) {
         console.log(e.message);
       }
-      process.stdout.write(this.#pathController.currentPath + "> ");
+      process.stdout.write(
+        "You are currently in\n" + this.#pathController.currentPath + "> "
+      );
     });
 
     process.on("SIGINT", () => {
